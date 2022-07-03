@@ -5,13 +5,10 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh "docker build Dockerfile -t numbers"
             }
         }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
+
         stage('Deploy') {
             steps {
                 echo 'Deploying....'
