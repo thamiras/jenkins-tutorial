@@ -8,13 +8,16 @@ pipeline {
                     sh "docker build -t 679701358486.dkr.ecr.us-west-2.amazonaws.com/jenkins_ecr:number ./"
                 }
             }
-        }
 
-    if (env.BRANCH_NAME == "main"){
+    
         stage('Deploy') {
             steps {
-                sh "docker push 679701358486.dkr.ecr.us-west-2.amazonaws.com/jenkins_ecr:number"
+                if (env.BRANCH_NAME == "main"){
+                    echo 'Deploying...'
+                    sh "docker push 679701358486.dkr.ecr.us-west-2.amazonaws.com/jenkins_ecr:number"
+                }
             }
         }
     }
 }
+
